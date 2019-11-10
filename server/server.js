@@ -4,6 +4,9 @@ const app = express();
 //Se instancia la libreria mongoose para conectar a la base de datos en MongoDB
 const mongoose = require('mongoose');
 
+//Instancia libreria path para poder ejecutar un html externo
+const path = require('path');
+
 //Otras importaciones necesarias
 const bodyParser = require('body-parser')
 require('./config/config')
@@ -14,6 +17,12 @@ app.use(require('./routes/index'));
 //Configuracion del body parser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+
+//habilitar la carpeta public
+//console.log(path.resolve(__dirname , '../public'));
+app.use(express.static(path.resolve(__dirname , '../public')));
+
 
 //Conexion a la base de datos
 
